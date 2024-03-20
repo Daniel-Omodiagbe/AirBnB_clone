@@ -15,6 +15,13 @@ class BaseModel:
     created_at = datetime.now()
     updated_at = datetime.now()
 
+    def __init__(self, *args, **kwargs):
+        """instantiation of attributes"""
+        if kwargs:
+            id = str(uuid.uuid4())
+            created_at = datetime.now().isoformat()
+            updated_at = datetime.now().isoformat()
+
     def __str__(self):
         """should print:
         [<class name>] (<self.id>) <self.__dict__>"""
