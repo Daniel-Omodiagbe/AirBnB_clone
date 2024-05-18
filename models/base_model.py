@@ -4,6 +4,7 @@ Base module for AirBnB project
 """
 import uuid
 from datetime import datetime
+"""import models"""
 
 
 class BaseModel:
@@ -18,9 +19,17 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """instantiation of attributes"""
         if kwargs:
+            for key, val in kwargs.items():
+                if key is not "__class__":
+                    if key == "updated_at" or key == "created_at":
+                        setattr(self, key, datetime.now().isoformat(value))
+                    else:
+                        setattr(self, key, value)
+        else:
             id = str(uuid.uuid4())
             created_at = datetime.now().isoformat()
             updated_at = datetime.now().isoformat()
+            """models.storage.new(self)"""
 
     def __str__(self):
         """should print:
@@ -34,6 +43,7 @@ class BaseModel:
         """updates the public instance attribute updated_at
         with current datetime"""
         self.updated_at = datetime.now()
+        """models.storage.save()"""
 
     def to_dict(self):
         """returns a dictionary containing all keys/values of __dict__
