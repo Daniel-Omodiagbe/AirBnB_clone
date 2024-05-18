@@ -16,8 +16,8 @@ class BaseModel:
     created_at = datetime.now()
     updated_at = datetime.now()
 
-    def __init__(self, *args, **kwargs):
-        """instantiation of attributes"""
+    """def __init__(self, *args, **kwargs):
+        instantiation of attributes
         if kwargs:
             for key, val in kwargs.items():
                 if key is not "__class__":
@@ -29,7 +29,7 @@ class BaseModel:
             id = str(uuid.uuid4())
             created_at = datetime.now().isoformat()
             updated_at = datetime.now().isoformat()
-            """models.storage.new(self)"""
+            models.storage.new(self)"""
 
     def __str__(self):
         """should print:
