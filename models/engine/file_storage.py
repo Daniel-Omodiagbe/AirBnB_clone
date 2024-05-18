@@ -35,8 +35,8 @@ class FileStorage:
             with open(self.__file_path, "r") as file:
                 data = json.load(file)
                 for key, val in data.items():
-                    class_name, obj_id = key.split('.')
-                    if hasattr(models, class_name):
-                        self.__objects[key] = getattr(models, class_name)(**val)
+                    class_name = val['__class__']
+                    cls = globals().get(class_name, BaseModel)
+                    self.__objects[key] = cls(**val)
         except FileNotFoundError:
             pass
