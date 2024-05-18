@@ -16,8 +16,10 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """instantiation"""
         if kwargs:
+            if "__class__" not in kwargs.keys():
+                setattr(self, "__class__", self.__class__.__name__)
             for key, val in kwargs.items():
-                if key is not "__class__":
+                if key != "__class__":
                     if key == "updated_at" or key == "created_at":
                         setattr(self, key, datetime.now().isoformat(value))
                     else:
