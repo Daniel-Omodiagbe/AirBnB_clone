@@ -8,16 +8,10 @@ from datetime import datetime
 
 
 class BaseModel:
-    """
-    defines all common attributes and methods for
-    other classes
-    """
-    id = str(uuid.uuid4())
-    created_at = datetime.now()
-    updated_at = datetime.now()
+    """Base model class"""
 
-    """def __init__(self, *args, **kwargs):
-        instantiation of attributes
+    def __init__(self, *args, **kwargs):
+        """instantiation"""
         if kwargs:
             for key, val in kwargs.items():
                 if key is not "__class__":
@@ -26,10 +20,10 @@ class BaseModel:
                     else:
                         setattr(self, key, value)
         else:
-            id = str(uuid.uuid4())
-            created_at = datetime.now().isoformat()
-            updated_at = datetime.now().isoformat()
-            models.storage.new(self)"""
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            """models.storage.new(self)"""
 
     def __str__(self):
         """should print:
