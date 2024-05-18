@@ -49,5 +49,4 @@ class BaseModel:
         dict_1['created_at'] = self.created_at.isoformat()
         dict_1['updated_at'] = self.updated_at.isoformat()
         dict_1["__class__"] = self.__class__.__name__
-        if dict_1:
-            return dict_1
+        return dict_1
