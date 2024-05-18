@@ -5,6 +5,7 @@ storgae module for AirBnB project
 
 import json
 from models.base_model import BaseModel
+from datetime import datetime
 
 
 class FileStorage:
@@ -37,6 +38,10 @@ class FileStorage:
                 for key, val in data.items():
                     class_name = val['__class__']
                     cls = globals().get(class_name, BaseModel)
+                    if 'created_at' in val:
+                        val['created_at'] = datetime.fromisoformat(val['created_at'])
+                    if 'updated_at' in val:
+                        val['updated_at'] = datetime.fromisoformat(val['updated_at'])
                     self.__objects[key] = cls(**val)
         except FileNotFoundError:
             pass
