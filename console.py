@@ -5,6 +5,7 @@ import sys
 from models.base_model import BaseModel
 from models import storage
 
+
 class HBNBCommand(cmd.Cmd):
     """quit and EOF to exit the program
     help (this action is provided by default by
@@ -81,7 +82,6 @@ class HBNBCommand(cmd.Cmd):
             class_name = line.strip()
             if class_name != "BaseModel":
                 print("** class doesn't exist **")
-                return
             else:
                 objects = storage.all()
                 for key, val in objects.items():
@@ -120,7 +120,6 @@ class HBNBCommand(cmd.Cmd):
                 objects = storage.all()
                 objects[key][args[2]] = args[3]
                 storage.save
-
 
 
 if __name__ == '__main__':
