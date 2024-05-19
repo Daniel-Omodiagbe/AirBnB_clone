@@ -21,6 +21,10 @@ class HBNBCommand(cmd.Cmd):
         "Quit command to exit the program"
         return sys.exit()
 
+    def emptyline(self):
+        """Do nothing on empty line"""
+        pass
+
     def do_create(self, class_name):
         """create new instances of BaseModel"""
         if not class_name:
